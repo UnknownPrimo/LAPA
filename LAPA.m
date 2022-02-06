@@ -28,11 +28,19 @@ V_rand = imboxfilt(V_rand,3);
 
                 %if ix is equal to 1 applie 1 for left bound
                 if ix == 1
-                    V_rand(iy,ix) = LB;
+                    V_rand(ix,iy) = LB;
 
                  %If iy is equal to nx applie 0 for right bound
                 elseif ix == nx
                     V_rand(ix,iy) = RB;
+                    
+                %if ix is equal to 1 applie 0 for left bound
+                elseif iy == 1
+                    V_rand(ix,iy) = TB;
+
+                 %If iy is equal to nx applie 0 for right bound
+                elseif iy == ny
+                    V_rand(ix,iy) = BB;
 
                 end
         end
