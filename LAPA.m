@@ -21,31 +21,31 @@ V_rand = rand (nx,ny);
 %Loop through the iterations getting a new solution and resetting the BC's
 for j = 1:  max_iterations
 
-V_rand = imboxfilt(V_rand,3);
+    V_rand = imboxfilt(V_rand,3);
 
-    for ix = 1 : nx
-        for iy = 1 : ny
+        for ix = 1 : nx
+            for iy = 1 : ny
 
-                %if ix is equal to 1 applie 1 for left bound
-                if ix == 1
-                    V_rand(ix,iy) = LB;
+                    %if ix is equal to 1 applie 1 for left bound
+                    if ix == 1
+                        V_rand(ix,iy) = LB;
 
-                 %If iy is equal to nx applie 0 for right bound
-                elseif ix == nx
-                    V_rand(ix,iy) = RB;
-                    
-                %if ix is equal to 1 applie 0 for left bound
-                elseif iy == 1
-                    V_rand(ix,iy) = TB;
+                     %If iy is equal to nx applie 0 for right bound
+                    elseif ix == nx
+                        V_rand(ix,iy) = RB;
 
-                 %If iy is equal to ny applie 0 for right bound
-                elseif iy == ny
-                    V_rand(ix,iy) = BB;
+                    %if ix is equal to 1 applie 0 for left bound
+                    elseif iy == 1
+                        V_rand(ix,iy) = TB;
 
-                end
+                     %If iy is equal to ny applie 0 for right bound
+                    elseif iy == ny
+                        V_rand(ix,iy) = BB;
+
+                    end
+            end
+
         end
-
-    end
 
     % Calculate the electric field
     [Ex,Ey] = gradient(V_rand);
