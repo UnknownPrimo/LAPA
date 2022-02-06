@@ -8,39 +8,42 @@ close all;
 nx = 30; %solution variable nx
 ny = 20; %solution variable ny
 
+%Boundary conditions
 LB = 1; % Left bound
 RB = 0; % Right bound
 TB = 0; % Top bound
 BB = 0; % Bottom bound
 
-max_iterations = 100; % max number of iterations
+% max number of iterations
+max_iterations = 100; 
 
 % Matrix V for as solution variable for nx and ny 
-V_rand = rand (nx,ny); 
+Matrix_V = zeros(nx,ny); 
 
 %Loop through the iterations getting a new solution and resetting the BC's
-for j = 1:  max_iterations
+for j = 1 : max_iterations
 
-    V_rand = imboxfilt(V_rand,3);
-
+    Matrix_V = imboxfilt(Matrix_V,3);
+        
+        %Loop 
         for ix = 1 : nx
             for iy = 1 : ny
 
                     %if ix is equal to 1 applie 1 for left bound
                     if ix == 1
-                        V_rand(ix,iy) = LB;
+                        Matrix_V(ix,iy) = LB;
 
                      %If iy is equal to nx applie 0 for right bound
                     elseif ix == nx
-                        V_rand(ix,iy) = RB;
+                        Matrix_V(ix,iy) = RB;
 
                     %if ix is equal to 1 applie 0 for left bound
                     elseif iy == 1
-                        V_rand(ix,iy) = TB;
+                        Matrix_V(ix,iy) = TB;
 
                      %If iy is equal to ny applie 0 for right bound
                     elseif iy == ny
-                        V_rand(ix,iy) = BB;
+                        Matrix_V(ix,iy) = BB;
 
                     end
             end
@@ -48,11 +51,11 @@ for j = 1:  max_iterations
         end
 
     % Calculate the electric field
-    [Ex,Ey] = gradient(V_rand);
+    [Ex,Ey] = gradient(Matrix_V);
 
     % Plot Ex and Ey using surf() and quiver
     figure (1)
-    surf(V_rand)
+    surf(Matrix_V)
 
     figure (2)
     quiver(Ex,Ey);
