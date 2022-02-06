@@ -15,7 +15,7 @@ BB = 0; % Bottom bound
 
 max_iterations = 100; % max number of iterations
 
-%set velocity to nx and ny 
+% Matrix V for as solution variable for nx and ny 
 V_rand = rand (nx,ny); 
 
 %Loop through the iterations getting a new solution and resetting the BC's
@@ -38,7 +38,7 @@ V_rand = imboxfilt(V_rand,3);
                 elseif iy == 1
                     V_rand(ix,iy) = TB;
 
-                 %If iy is equal to nx applie 0 for right bound
+                 %If iy is equal to ny applie 0 for right bound
                 elseif iy == ny
                     V_rand(ix,iy) = BB;
 
